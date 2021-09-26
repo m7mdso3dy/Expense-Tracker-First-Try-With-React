@@ -3,9 +3,10 @@ import { useState } from 'react/cjs/react.development';
 
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from './components/NewExpense/NewExpense';
-const App = () => {
-  const [expenses, setExpenses] = useState(
-    [
+/*.......................
+................
+**/
+const intialExpenses = [
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -26,14 +27,15 @@ const App = () => {
       date: new Date(2021, 5, 12),
     },
   ]
-  );
+const App = () => {
+  const [expenses, setExpenses] = useState(intialExpenses);
  
- 
- 
-
-
   const addExpenseHandler = (expense) => {
-    setExpenses([...expenses, expense]);
+    setExpenses(pervState => {
+      return (
+        [expense,...pervState]
+      );
+    });
   }
   return (
     <div>
